@@ -1,0 +1,22 @@
+{
+  "name": "etm-starting-server",
+  "version": "1.0.0",
+  "description": "entanmo starting server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "etm starting"
+  ],
+  "author": "Sy",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^6.10.0",
+    "colors": "^1.3.3",
+    "commander": "^2.20.0",
+    "koa": "^2.7.0",
+    "koa-router": "^7.4.0",
+    "strftime": "^0.10.0"
+  }
+}
