@@ -6,6 +6,7 @@ const path = require("path");
 const program = require("commander");
 const Koa = require("koa");
 const KoaRouter = require("koa-router");
+const cors = require("koa2-cors");
 
 const Logger = require("./src/utils/logger");
 
@@ -40,6 +41,9 @@ let _init = async opt => {
 
 let _setup = async opt => {
     let app = new Koa();
+
+    // koa cors Access-Control-Allow-Origin
+    app.use(cors());
 
     // router
     const apiDir = path.resolve(__dirname, "src", "api");
