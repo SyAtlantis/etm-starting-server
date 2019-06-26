@@ -4,9 +4,6 @@ const os = require('os');
 const axios = require('axios');
 const shell = require('shelljs');
 
-const Ajv = require("ajv");
-let ajv = new Ajv();
-
 let getNetInfo = async ctx => {
     try {
         await axios.get('http://ip-api.com/json/')
@@ -64,29 +61,29 @@ let getGpuInfo = async ctx => {
     // }
 
     ctx.body = {
-        success: true,
-        results: "test getGpuInfo"
+        success: false,
+        message: "todo getGpuInfo"
     };
 };
 
 let getProcInfo = async ctx => {
     ctx.body = {
-        success: true,
-        results: "test getProcInfo"
+        success: false,
+        message: "todo getProcInfo"
     };
 };
 
 let getSyncInfo = async ctx => {
     ctx.body = {
-        success: true,
-        results: "test getSyncInfo"
+        success: false,
+        message: "todo getSyncInfo"
     };
 };
 
 let getBlockInfo = async ctx => {
     ctx.body = {
-        success: true,
-        results: "test getBlockInfo"
+        success: false,
+        message: "todo getBlockInfo"
     };
 };
 
