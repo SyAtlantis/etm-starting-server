@@ -1,15 +1,40 @@
 "use strict";
 
-const shelljs = require('shelljs');
-const env = require('../utils/env');
+const env = require('../lib/env');
 
+// entanmo project
 let getEntanmoInfo = async ctx => {
+    const packageJson = require("../../resources/etm/package.json");
+    let version = packageJson.version;
+
+    if (version) {
+        return ctx.body = {
+            success: true,
+            results: version
+        };
+    }
+
     ctx.body = {
         success: false,
-        message: "TODO getEntanmoInfo"
+        message: "Can not find entanmo project!"
     };
 };
 
+let installEntanmo = async ctx => {
+    ctx.body = {
+        success: false,
+        message: "TODO installEntanmo"
+    };
+};
+
+let uninstallEntanmo = async ctx => {
+    ctx.body = {
+        success: false,
+        message: "TODO uninstallEntanmo"
+    };
+};
+
+// nodejs
 let getNodejsInfo = async ctx => {
     try {
         await env.doctorNode()
@@ -27,32 +52,6 @@ let getNodejsInfo = async ctx => {
             message: `${err}`
         };
     }
-};
-
-let getPm2Info = async ctx => {
-    try {
-        await env.doctorPM2()
-            .then(res => {
-                ctx.body = {
-                    success: true,
-                    results: res
-                };
-            }).catch(err => {
-                throw err;
-            });
-    } catch (err) {
-        ctx.body = {
-            success: false,
-            message: `${err}`
-        };
-    }
-};
-
-let installEntanmo = async ctx => {
-    ctx.body = {
-        success: false,
-        message: "TODO installEntanmo"
-    };
 };
 
 let installNodejs = async ctx => {
@@ -74,9 +73,9 @@ let installNodejs = async ctx => {
     }
 };
 
-let installPm2 = async ctx => {
+let uninstallNodejs = async ctx => {
     try {
-        await env.lnPM2()
+        await env.unlnNode()
             .then(res => {
                 ctx.body = {
                     success: true,
@@ -93,16 +92,29 @@ let installPm2 = async ctx => {
     }
 };
 
-let uninstallEntanmo = async ctx => {
-    ctx.body = {
-        success: false,
-        message: "TODO uninstallEntanmo"
-    };
+// pm2
+let getPm2Info = async ctx => {
+    try {
+        await env.doctorPM2()
+            .then(res => {
+                ctx.body = {
+                    success: true,
+                    results: res
+                };
+            }).catch(err => {
+                throw err;
+            });
+    } catch (err) {
+        ctx.body = {
+            success: false,
+            message: `${err}`
+        };
+    }
 };
 
-let uninstallNodejs = async ctx => {
+let installPm2 = async ctx => {
     try {
-        await env.unlnNode()
+        await env.lnPM2()
             .then(res => {
                 ctx.body = {
                     success: true,

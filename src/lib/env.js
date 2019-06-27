@@ -6,8 +6,9 @@ const fs = require("fs");
 const shelljs = require("shelljs");
 
 /// constants
-const rootDir = path.resolve(path.dirname(process.execPath));
-const projDir = path.resolve(rootDir, "../../../");
+const rootDir = path.resolve(path.join(__dirname, "../../resources"));
+// const rootDir = path.resolve(path.dirname(process.execPath));
+const projDir = path.resolve(path.join(rootDir, "etm"));
 
 const appNodePath = async () => {
     if (process.platform === "win32") {
