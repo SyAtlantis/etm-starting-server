@@ -1,6 +1,25 @@
 "use strict";
 const pm2 = require('../lib/pm2');
 
+let isStarted = async ctx => {
+    try {
+        await pm2.isDeployed()
+            .then(res => {
+                ctx.body = {
+                    success: true,
+                    results: res
+                };
+            }).catch(err => {
+                throw err;
+            });
+    } catch (err) {
+        ctx.body = {
+            success: false,
+            message: `${err}`
+        };
+    }
+}
+
 let start = async ctx => {
     try {
         await pm2.deploy()
@@ -41,8 +60,8 @@ let stop = async ctx => {
 
 let pause = async ctx => {
     ctx.body = {
-        success: true,
-        data: "test pause"
+        success: false,
+        message: "no api to use!"
     };
 }
 
@@ -85,6 +104,7 @@ let unboot = async ctx => {
 }
 
 module.exports = (router) => {
+    router.get("/control/isStarted", isStarted);
     router.put("/control/start", start);
     router.put("/control/stop", stop);
     router.put("/control/pause", pause);

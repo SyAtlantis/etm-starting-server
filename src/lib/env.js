@@ -12,11 +12,11 @@ const projDir = path.resolve(path.join(rootDir, "etm"));
 
 const appNodePath = async () => {
     if (process.platform === "win32") {
-        return path.resolve(rootDir, "runner.exe");
+        return path.resolve(rootDir, "./node/win32/runner.exe");
     } else if (process.platform === "linux") {
-        return path.resolve(rootDir, "runner");
+        return path.resolve(rootDir, "./node/linux/runner");
     } else if (process.platform === "darwin") {
-        return path.resolve(rootDir, "runner");
+        return path.resolve(rootDir, "./node/macos/runner");
     } else {
         throw new Error(`Unsupported os[${process.platform}]`);
     }
